@@ -44,16 +44,22 @@ function validate($val){
 
     if(empty($email_error) && empty($password_error)){
 
-        $sql = $conn->prepare("SELECT * FROM student WHERE std_email = :email ");
+        $sql = $conn->prepare("SELECT * FROM user WHERE email = :email ");
         $sql->bindParam(":email", $email);
         $sql->execute();
 
         $result = $sql->fetch(PDO::FETCH_ASSOC);
 
-        $db_pass = $result['std_password'];
+         $sql1 = $conn->query("SELECT id FROM teacher WHERE email = '{$email}'");
+         $sql1->execute();
+         $result1 = $sql1->fetch(PDO::FETCH_ASSOC);
+        
+        $db_pass = $result['password'];
         
         if(password_verify($password, $db_pass)){
-          $_SESSION['name'] = $result['std_name'];
+          $_SESSION['name'] = $result['name'];
+          $_SESSION['tid'] = $result1['id'];
+
           header("Location:index.php");
         }
         else{
@@ -72,7 +78,7 @@ function validate($val){
 
     <div class="row sign-container d-flex justify-content-center align-items-center">
 
-        <div class="col-5 p-4 bg-white sign">
+        <div class="col-lg-5 col-12 mx-auto p-4 bg-white sign">
 
         <header class="d-flex align-items-center gap-3 mb-4">
             <h1><i class="fa-regular fa-user"></i></h1>

@@ -58,7 +58,7 @@ function validate($val){
     if(empty($name_error) && empty($email_error) && empty($password_error)){
 
 
-        $sql = $conn->prepare("SELECT * FROM student WHERE std_email = :email ");
+        $sql = $conn->prepare("SELECT * FROM user WHERE email = :email ");
         $sql->bindParam(":email",$email , PDO::PARAM_STR);
         $sql->execute();
 
@@ -68,7 +68,7 @@ function validate($val){
             echo "Email is already taken";
         }
         else{
-            $sql1 = $conn->prepare("INSERT INTO student (std_name, std_email ,std_password) VALUES (:name, :email, :password)");
+            $sql1 = $conn->prepare("INSERT INTO user (name, email ,password) VALUES (:name, :email, :password)");
             $sql1->bindParam(":name",$name , PDO::PARAM_STR);
             $sql1->bindParam(":email",$email , PDO::PARAM_STR);            
             $sql1->bindParam(":password",$password , PDO::PARAM_STR);
