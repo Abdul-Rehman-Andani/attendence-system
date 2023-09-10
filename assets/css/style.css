@@ -91,3 +91,21 @@ table button{
     outline: 0;
     background-color: transparent;
 }
+.model{
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0,0,0,0.6);
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    left: 0;   
+    display: none;
+}
+.model .fa-xmark{
+    position: absolute;
+    right: 30px;
+    top: 30px;
+    color: white;
+    cursor: pointer;
+    font-size: 30px;
+}
