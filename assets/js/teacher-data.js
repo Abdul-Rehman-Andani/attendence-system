@@ -12,7 +12,7 @@ document.querySelector(".fa-xmark").addEventListener("click", () => {
   closeModel("tmodel");
 });
 
-// fnction to load teacher data
+// function to load teacher data
 const loadData = () => {
   fetch("http://localhost/attendence-system/teacher-data.php")
     .then((res) => res.json())
@@ -30,7 +30,7 @@ const loadData = () => {
                 </tr>`;
       }
 
-      document.querySelector("#table").innerHTML = tr;
+      document.querySelector("#t-table").innerHTML = tr;
     });
 };
 
@@ -102,4 +102,37 @@ document.getElementById("update-form").addEventListener("submit", (e) => {
       "Content-type": "application/json",
     },
   }).then((res) => loadData());
+});
+
+// search teacher
+
+document.getElementById("seacrh-teacher").addEventListener("input", (e) => {
+  let val = e.target.value;
+  let value = { val: val };
+  let jsonVal = JSON.stringify(value);
+
+  fetch("http://localhost/attendence-system/search-teacher.php", {
+    method: "POST",
+    body: jsonVal,
+    headers: {
+      "Content-type": "applocation/json",
+    },
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      let tr = "";
+
+      for (i in data) {
+        tr += `<tr>
+                    <td>${data[i].id}</td>
+                    <td>${data[i].name}</td>
+                    <td>${data[i].email}</td>
+                    <td>${data[i].class}</td>
+                    <td><button onclick='editTeacher(${data[i].id})' value=${data[i].id}><i class="fa-solid fa-pen-to-square"></i></button></td>
+                    <td><button onclick='delTeacher(${data[i].id})' value=${data[i].id}><i class="fa-solid fa-trash"></i></button></td>
+                </tr>`;
+      }
+
+      document.querySelector("#table").innerHTML = tr;
+    });
 });

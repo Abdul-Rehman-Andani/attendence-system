@@ -92,7 +92,7 @@ function validate($val){
 
     <div class="row sign-container d-flex justify-content-center align-items-center">
 
-        <div class="col-5 p-4 bg-white sign">
+        <div class="col-4 p-4 bg-white sign">
 
         <header class="d-flex align-items-center gap-3 mb-4">
             <h1><i class="fa-regular fa-user"></i></h1>

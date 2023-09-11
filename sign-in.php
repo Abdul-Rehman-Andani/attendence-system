@@ -7,7 +7,6 @@ include "config.php";
 $email_error = "";
 $password_error = "";
 $error = "";
-
 $email = "";
 $password = "";
 $success = "";
@@ -78,7 +77,7 @@ function validate($val){
 
     <div class="row sign-container d-flex justify-content-center align-items-center">
 
-        <div class="col-lg-5 col-12 mx-auto p-4 bg-white sign">
+        <div class="col-lg-4 col-12 mx-auto p-4 bg-white sign">
 
         <header class="d-flex align-items-center gap-3 mb-4">
             <h1><i class="fa-regular fa-user"></i></h1>
